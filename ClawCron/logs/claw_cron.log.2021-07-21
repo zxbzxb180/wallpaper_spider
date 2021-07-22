@@ -1,0 +1,28 @@
+2021-07-21 15:54:49,575 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2021-07-21 15:54:49,575 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
+2021-07-21 15:54:49,575 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2021-07-21 15:54:49,575 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
+2021-07-21 15:54:49,576 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2021-07-21 15:54:49,576 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
+2021-07-21 15:54:49,576 dispatcher.py [line:24] [INFO]: claw.cron service start!
+2021-07-21 15:54:49,580 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
+2021-07-21 15:54:49,580 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
+2021-07-21 15:54:49,581 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
+2021-07-21 15:54:49,581 base.py [line:166] [INFO]: Scheduler started
+2021-07-21 15:54:49,582 base.py [line:940] [DEBUG]: Looking for jobs to run
+2021-07-21 15:54:49,583 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-22 01:00:00+08:00 (in 32710.417068 seconds)
+2021-07-22 01:00:00,001 base.py [line:940] [DEBUG]: Looking for jobs to run
+2021-07-22 01:00:00,002 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-07-22 01:00:00 CST)" (scheduled at 2021-07-22 01:00:00+08:00)
+2021-07-22 01:00:00,003 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-22 03:00:00+08:00 (in 7199.997910 seconds)
+2021-07-22 01:00:00,004 __init__.py [line:44] [INFO]: [DEBUG] excute task wallpaper spider begin
+2021-07-22 01:00:42,975 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-07-23 01:00:00 CST)" executed successfully
+2021-07-22 03:00:00,001 base.py [line:940] [DEBUG]: Looking for jobs to run
+2021-07-22 03:00:00,002 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='3'], next run at: 2021-07-22 03:00:00 CST)" (scheduled at 2021-07-22 03:00:00+08:00)
+2021-07-22 03:00:00,002 __init__.py [line:44] [INFO]: [DEBUG] excute task auto upload images to qiniuyun begin
+2021-07-22 03:00:00,005 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-22 08:30:00+08:00 (in 19799.998076 seconds)
+2021-07-22 03:00:48,970 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='3'], next run at: 2021-07-23 03:00:00 CST)" executed successfully
+2021-07-22 08:30:00,004 base.py [line:940] [DEBUG]: Looking for jobs to run
+2021-07-22 08:30:00,006 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-07-22 08:30:00 CST)" (scheduled at 2021-07-22 08:30:00+08:00)
+2021-07-22 08:30:00,007 __init__.py [line:44] [INFO]: [DEBUG] excute task daily wallpaper begin
+2021-07-22 08:30:00,011 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-23 01:00:00+08:00 (in 59399.995422 seconds)
+2021-07-22 08:30:01,690 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-07-23 08:30:00 CST)" executed successfully

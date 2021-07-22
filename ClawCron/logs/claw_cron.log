@@ -1,0 +1,10 @@
+2021-07-22 22:53:11,366 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2021-07-22 22:53:11,367 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
+2021-07-22 22:53:11,367 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2021-07-22 22:53:11,367 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
+2021-07-22 22:53:11,367 dispatcher.py [line:24] [INFO]: claw.cron service start!
+2021-07-22 22:53:11,369 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
+2021-07-22 22:53:11,369 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
+2021-07-22 22:53:11,370 base.py [line:166] [INFO]: Scheduler started
+2021-07-22 22:53:11,370 base.py [line:940] [DEBUG]: Looking for jobs to run
+2021-07-22 22:53:11,370 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-23 01:00:00+08:00 (in 7608.629598 seconds)
