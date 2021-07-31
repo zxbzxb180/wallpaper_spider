@@ -1,9 +1,0 @@
-2021-07-02 01:00:00,006 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-07-03 01:00:00 CST)" (scheduled at 2021-07-02 01:00:00+08:00)
-2021-07-02 01:00:00,009 __init__.py [line:44] [INFO]: [DEBUG] excute task wallpaper spider begin
-2021-07-02 01:00:40,828 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-07-03 01:00:00 CST)" executed successfully
-2021-07-02 03:00:00,002 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='3'], next run at: 2021-07-03 03:00:00 CST)" (scheduled at 2021-07-02 03:00:00+08:00)
-2021-07-02 03:00:00,002 __init__.py [line:44] [INFO]: [DEBUG] excute task auto upload images to qiniuyun begin
-2021-07-02 03:01:29,216 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='3'], next run at: 2021-07-03 03:00:00 CST)" executed successfully
-2021-07-02 08:30:00,019 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-07-03 08:30:00 CST)" (scheduled at 2021-07-02 08:30:00+08:00)
-2021-07-02 08:30:00,021 __init__.py [line:44] [INFO]: [DEBUG] excute task daily wallpaper begin
-2021-07-02 08:30:02,708 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-07-03 08:30:00 CST)" executed successfully

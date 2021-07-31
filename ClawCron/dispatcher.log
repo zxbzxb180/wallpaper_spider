@@ -1,1 +1,207 @@
 nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "wallpaper.py", line 105, in <module>
+    AU.main()
+  File "/home/spider/auto_upload.py", line 79, in main
+    self.get_android_wallpaper()
+  File "/home/spider/auto_upload.py", line 32, in get_android_wallpaper
+    for wallpaper in wallpapers:
+  File "/usr/local/lib/python3.7/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/usr/local/lib/python3.7/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/topology.py", line 488, in get_server_session
+    None)
+  File "/usr/local/lib/python3.7/site-packages/pymongo/topology.py", line 217, in _select_servers_loop
+    (self._error_message(selector), timeout, self.description))
+pymongo.errors.ServerSelectionTimeoutError: 47.111.74.232:27017: timed out, Timeout: 30s, Topology Description: <TopologyDescription id: 6102e1322b405c7aff6bdd47, topology_type: Single, servers: [<ServerDescription ('47.111.74.232', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('47.111.74.232:27017: timed out')>]>
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "wallpaper.py", line 105, in <module>
+    AU.main()
+  File "/home/spider/auto_upload.py", line 79, in main
+    self.get_android_wallpaper()
+  File "/home/spider/auto_upload.py", line 32, in get_android_wallpaper
+    for wallpaper in wallpapers:
+  File "/usr/local/lib/python3.7/site-packages/pymongo/cursor.py", line 1207, in next
+    if len(self.__data) or self._refresh():
+  File "/usr/local/lib/python3.7/site-packages/pymongo/cursor.py", line 1100, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1816, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1766, in __start_session
+    server_session = self._get_server_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/mongo_client.py", line 1802, in _get_server_session
+    return self._topology.get_server_session()
+  File "/usr/local/lib/python3.7/site-packages/pymongo/topology.py", line 488, in get_server_session
+    None)
+  File "/usr/local/lib/python3.7/site-packages/pymongo/topology.py", line 217, in _select_servers_loop
+    (self._error_message(selector), timeout, self.description))
+pymongo.errors.ServerSelectionTimeoutError: 47.111.74.232:27017: timed out, Timeout: 30s, Topology Description: <TopologyDescription id: 610434538a0f1376adbe65bd, topology_type: Single, servers: [<ServerDescription ('47.111.74.232', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('47.111.74.232:27017: timed out')>]>
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+
+Traceback (most recent call last):
+  File "/home/spider/ClawCron/claw_core/exc.py", line 15, in wrap
+    return func(*args, **kwargs)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 46, in timing_tasks
+    % (script_path, excute_cmd), shell=True)
+  File "/home/spider/ClawCron/tasks/monitoring/__init__.py", line 81, in check_output
+    output = output[:-2] if output.endswith("\n") else output
+TypeError: endswith first arg must be bytes or a tuple of bytes, not str
+

@@ -31,7 +31,7 @@ class WPPost():
                               'post_tag': ['壁纸'], #文章所属标签，没有则自动创建
                               'category': ['壁纸分享'] #文章所属分类，没有则自动创建
                              }
-        self.content = ''
+        self.content = '本站收集的所有壁纸,仅为壁纸爱好者分享,禁止商用或进行其他不当行为！如侵犯到权益,请联系我立刻删除。\r\n \r\n'
         self.post.comment_status = 'open'
         self.sql_client = database
         self.sql_client.connect()
@@ -43,6 +43,9 @@ class WPPost():
         event_date_dt = datetime.datetime.strptime(time.strftime("%Y-%m-%d",time.localtime(time.time())), '%Y-%m-%d')
         wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1))).limit(21))
         i = 0
+        if not wallpapers:
+            self.content += '很抱歉^_^，今日没有壁纸哦~'
+            return
         for wallpaper in wallpapers:
             i += 1
             wp = wallpaper.url

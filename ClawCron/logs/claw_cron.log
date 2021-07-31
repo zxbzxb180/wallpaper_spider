@@ -1,10 +1,6 @@
-2021-07-22 22:53:11,366 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2021-07-22 22:53:11,367 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
-2021-07-22 22:53:11,367 base.py [line:440] [INFO]: Adding job tentatively -- it will be properly scheduled when the scheduler starts
-2021-07-22 22:53:11,367 scheduler.py [line:44] [INFO]: Regist timing_tasks Success!
-2021-07-22 22:53:11,367 dispatcher.py [line:24] [INFO]: claw.cron service start!
-2021-07-22 22:53:11,369 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
-2021-07-22 22:53:11,369 base.py [line:881] [INFO]: Added job "timing_tasks" to job store "default"
-2021-07-22 22:53:11,370 base.py [line:166] [INFO]: Scheduler started
-2021-07-22 22:53:11,370 base.py [line:940] [DEBUG]: Looking for jobs to run
-2021-07-22 22:53:11,370 base.py [line:1020] [DEBUG]: Next wakeup is due at 2021-07-23 01:00:00+08:00 (in 7608.629598 seconds)
+2021-07-31 01:00:00,005 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-08-01 01:00:00 CST)" (scheduled at 2021-07-31 01:00:00+08:00)
+2021-07-31 01:00:00,009 __init__.py [line:44] [INFO]: [DEBUG] excute task wallpaper spider begin
+2021-07-31 01:18:43,465 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='1'], next run at: 2021-08-01 01:00:00 CST)" executed successfully
+2021-07-31 08:30:00,002 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-08-01 08:30:00 CST)" (scheduled at 2021-07-31 08:30:00+08:00)
+2021-07-31 08:30:00,003 __init__.py [line:44] [INFO]: [DEBUG] excute task daily wallpaper begin
+2021-07-31 08:30:02,059 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2021-08-01 08:30:00 CST)" executed successfully
