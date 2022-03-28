@@ -17,7 +17,7 @@ class AutoUploader():
                              password='cx6222580',
                              db='web',
                              charset='utf8')
-        self.client = pymongo.MongoClient('47.111.74.232', 27017)
+        self.client = pymongo.MongoClient('139.198.181.33', 17027)
         self.db = self.client['wallpaper']
         self.android_wallpaper = self.db['android_wallpaper']
         self.uploader = uploader()

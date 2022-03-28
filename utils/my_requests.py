@@ -5,7 +5,7 @@ def get_proxies():
     获取代理
     :return: 代理
     """
-    response = requests.get('http://47.111.74.232:5010/get/')
+    response = requests.get('http://139.198.181.33/get/')
     proxy_dict = response.json()
     proxies = {
         'http': proxy_dict['proxy'],

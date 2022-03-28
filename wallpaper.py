@@ -58,7 +58,7 @@ async def get_proxies():
     :return: 代理
     """
     async with aiohttp.ClientSession() as session:
-        async with session.get('http://47.111.74.232:5010/get/', timeout=12) as response:
+        async with session.get('http://139.198.181.33:5010/get/', timeout=12) as response:
             proxy_dict = await response.json()
             return 'http://' + proxy_dict['proxy'] + '/'
 
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     }
 
     # 初始化mongodb
-    client = pymongo.MongoClient('47.111.74.232', 27017)
+    client = pymongo.MongoClient('139.198.181.33', 17027)
     db = client['wallpaper']
     #today = time.strftime("%Y-%m-%d",time.localtime(time.time()))
     collection = db['android_wallpaper']

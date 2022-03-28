@@ -12,12 +12,12 @@ class AutoUploader():
 
     def __init__(self):
         self.sql_client = pymysql.connect(host='172.17.0.1',
-                             port=3306,
+                             port=13306,
                              user='web',
                              password='cx6222580',
                              db='web',
                              charset='utf8')
-        self.client = pymongo.MongoClient('47.111.74.232', 27017)
+        self.client = pymongo.MongoClient('139.198.181.33', 17027)
         self.db = self.client['wallpaper']
         self.android_wallpaper = self.db['android_wallpaper']
         self.uploader = uploader()
