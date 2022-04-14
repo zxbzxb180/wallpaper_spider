@@ -4,6 +4,7 @@ import qiniu.config
 import traceback
 import requests
 from utils.my_requests import retry_requests, get_proxies
+from logger import logger
 
 class Retry(object):
 
@@ -53,8 +54,15 @@ class uploader():
         print(info)
         if not ret:
             raise Exception('upload data error:{}'.format(url))
+        logger.info("壁纸上传七牛云成功！壁纸链接：{}".format(url))
         return ret
 
 if __name__ == '__main__':
-    upl = uploader()
-    print(upl.upload('test4', 'http://img5.adesk.com/5fe59ef5e7bce70db57fa97c'))
+    try:
+        upl = uploader()
+        logger.info(upl.upload('test4', 'http://img5.adesk.com/5fe59ef5e7bce70db57fa97c'))
+        logger.info("qiniu upload success!")
+    except Exception as e:
+        logger.exception(e)
+
+

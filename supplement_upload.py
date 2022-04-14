@@ -6,7 +6,7 @@ import hashlib
 from datetime import datetime
 
 from upload_2_qiniuyun import uploader
-
+from logger import logger
 
 class AutoUploader():
 

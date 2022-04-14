@@ -7,6 +7,8 @@ from datetime import datetime
 
 from upload_2_qiniuyun import uploader
 
+from logger import logger
+
 
 class AutoUploader():
 
@@ -17,7 +19,9 @@ class AutoUploader():
                              password='cx6222580',
                              db='web',
                              charset='utf8')
+        logger.info("连接mysql数据库成功")
         self.client = pymongo.MongoClient('139.198.181.33', 17027)
+        logger.info("连接mongodb数据库成功")
         self.db = self.client['wallpaper']
         self.android_wallpaper = self.db['android_wallpaper']
         self.uploader = uploader()
@@ -50,6 +54,7 @@ class AutoUploader():
             sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `source`, `add_time`) VALUES (%s, %s, %s, %s);"
             data = (img_id, 'https://yueeronline.xyz/adwp_{}.jpg'.format(img_id), 'android_wallpaper', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             self.save_to_mysql(sql, data)
+            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
             return True
 
     def to_th_upload(self, img_id, img_url):
@@ -59,6 +64,7 @@ class AutoUploader():
         if result:
             sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}'".format(qiniu_url, img_id)
             self.save_to_mysql(sql)
+            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
             return True
 
     def save_to_mysql(self, sql, data=None):
@@ -78,10 +84,15 @@ class AutoUploader():
     def main(self):
         self.get_android_wallpaper()
         print('finish!')
+        logger.info("今日壁纸上传七牛云并保存外链至mysql完毕！")
 
 
 if __name__ == '__main__':
-    AU = AutoUploader()
-    AU.main()
+    try:
+        AU = AutoUploader()
+        AU.main()
+        logger.info("wallpaper uploader success!")
+    except Exception as e:
+        logger.exception(e)
 
 

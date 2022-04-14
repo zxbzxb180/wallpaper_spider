@@ -16,6 +16,7 @@ import pymongo
 
 from wallpaper_db import database, WallpaperWallpaper
 
+from logger import logger
 
 class WPPost():
     def __init__(self):
@@ -66,5 +67,9 @@ class WPPost():
             self.post_wallpaper()
 
 if __name__ == '__main__':
-    wpp = WPPost()
-    wpp.main()
+    try:
+        wpp = WPPost()
+        wpp.main()
+        logger.info("WordPress每日壁纸文章发布成功!")
+    except Exception as e:
+        logger.exception(e)
