@@ -24,7 +24,7 @@ class WPPost():
         # self.wallpaper_db = self.client['wallpaper']
         # self.android_wallpaper = self.wallpaper_db['android_wallpaper']
 
-        self.wp = Client('http://101.32.202.51/xmlrpc.php', 'admin', 'Cx6222580')
+        self.wp = Client('http://********/xmlrpc.php', 'admin', '******')
         self.post = WordPressPost()
         self.post.title = '{} 壁纸分享'.format(time.strftime("%Y-%m-%d",time.localtime(time.time())))
         self.post.post_status = 'publish'  #文章状态，不写默认是草稿，private表示私密的，draft表示草稿，publish表示发布
