@@ -109,7 +109,7 @@ if __name__ == '__main__':
         # 立即开始下载图片，防止t参数实效
         AU = AutoUploader()
         AU.main()
-        logger.info("每日壁纸程序执行完毕!")
+        logger.success("每日壁纸程序执行完毕!")
 
     except Exception as e:
         logger.exception(e)

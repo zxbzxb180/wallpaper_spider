@@ -1,0 +1,6 @@
+2022-08-26 01:00:00,007 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='1'], next run at: 2022-08-26 01:00:00 CST)" (scheduled at 2022-08-26 01:00:00+08:00)
+2022-08-26 01:00:00,008 __init__.py [line:44] [INFO]: [DEBUG] excute task wallpaper spider begin
+2022-08-26 01:00:37,014 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='1'], next run at: 2022-08-27 01:00:00 CST)" executed successfully
+2022-08-26 08:30:00,007 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2022-08-26 08:30:00 CST)" (scheduled at 2022-08-26 08:30:00+08:00)
+2022-08-26 08:30:00,008 __init__.py [line:44] [INFO]: [DEBUG] excute task daily wallpaper begin
+2022-08-26 08:30:01,290 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2022-08-27 08:30:00 CST)" executed successfully

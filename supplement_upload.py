@@ -65,6 +65,7 @@ class AutoUploader():
     def main(self):
         self.get_android_wallpaper()
         print('finish!')
+        logger.info("Mysql入库完成")
 
 
 if __name__ == '__main__':

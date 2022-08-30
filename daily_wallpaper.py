@@ -70,6 +70,6 @@ if __name__ == '__main__':
     try:
         wpp = WPPost()
         wpp.main()
-        logger.info("WordPress每日壁纸文章发布成功!")
+        logger.success("WordPress每日壁纸文章发布成功!")
     except Exception as e:
         logger.exception(e)
