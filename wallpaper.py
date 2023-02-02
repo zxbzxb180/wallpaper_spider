@@ -8,6 +8,7 @@ from logger import logger
 
 
 async def fetch(session, url):
+    err = ""
     for i in range(10):
         try:
             async with session.get(url, proxy=await get_proxies(), headers=headers, timeout=6) as response:
@@ -15,8 +16,8 @@ async def fetch(session, url):
                 return await response.content()
         except Exception as e:
             # print(traceback.format_exc())
-            logger.exception(e)
-
+            err = e
+    logger.exception(e)
     return False
 
 
@@ -43,6 +44,7 @@ async def download(url):
     print(url)
     async with asyncio.Semaphore(50):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
+            err = ""
             for i in range(20):
                 try:
                     async with session.get(url, proxy=await get_proxies(), headers=headers, timeout=12) as response:
@@ -52,7 +54,9 @@ async def download(url):
                             break
                 except Exception as e:
                     # print(traceback.format_exc())
-                    logger.exception(e)
+                    err = e
+            if err != "":
+                logger.exception(e)
 
 
 async def get_proxies():

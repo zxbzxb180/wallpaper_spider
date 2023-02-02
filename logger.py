@@ -59,13 +59,14 @@ class Logger:
     def logger_add(self):
         loguru.logger.add(
             # sink=self.get_log_path(),
-            'logs/runtime_{}.log'.format(datetime.date.today()),
+            # 'logs/runtime_{}.log'.format(datetime.date.today()),
+            'logs/runtime.log',
             # 日志创建周期
-            rotation='00:00',
+            # rotation='00:00',
             # 保存
-            retention='1 year',
+            retention='90 days',
             # 文件的压缩格式
-            compression='zip',
+            # compression='zip',
             # 编码格式
             encoding="utf-8",
             # 具有使日志记录调用非阻塞的优点
