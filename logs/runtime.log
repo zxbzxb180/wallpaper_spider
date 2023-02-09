@@ -1,1 +1,1047 @@
 [32m2023-02-02 11:20:11.837[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m1[0m - [1m123[0m
+[32m2023-02-03 01:00:00.403[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-03 01:00:01.782[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fc820db7b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fc823712a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7fc822f53710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7fc822f4ae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7fc822f4db90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fc822f51680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fc822f9ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc82051ae50>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fc82051ae50>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fc82051ae50>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc82051ae50>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7fc8221a3e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7fc82058ad50>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7fc82052fc30>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7fc82052fc30>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820550910>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820550910>
+                  │    └ <function TCPConnector._create_connection at 0x7fc82225c560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7fc82055b290>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820550910>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7fc82225c8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7fc82055b290>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7fc822f4c050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-03 01:00:01.796[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fc820db7b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fc823712a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7fc822f53710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7fc822f4ae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7fc822f4db90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fc822f51680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fc822f9ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511190>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511190>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511190>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511190>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7fc8221a3e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7fc8204fa910>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7fc8204f1640>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7fc8204f1640>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc82051aed0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc82051aed0>
+                  │    └ <function TCPConnector._create_connection at 0x7fc82225c560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7fc82050cfd0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc82051aed0>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7fc82225c8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7fc82050cfd0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7fc822f4c050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-03 01:00:01.803[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fc820db7b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fc823712a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7fc822f53710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7fc822f4ae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7fc822f4db90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fc822f51680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fc822f9ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511490>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511490>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511490>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc820511490>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7fc8221a3e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7fc8204faf90>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7fc82049e9b0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7fc82049e9b0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511310>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511310>
+                  │    └ <function TCPConnector._create_connection at 0x7fc82225c560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7fc8204faf50>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511310>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7fc82225c8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7fc8204faf50>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7fc822f4c050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-03 01:00:01.811[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fc820db7b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fc823712a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7fc822f53710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7fc822f4ae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7fc822f4db90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7fc822f51680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7fc822f9ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc8205117d0>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7fc8205117d0>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7fc8205117d0>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7fc8205117d0>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7fc8221a3e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7fc82055be50>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7fc8204e90a0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7fc8204e90a0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511650>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511650>
+                  │    └ <function TCPConnector._create_connection at 0x7fc82225c560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7fc8204e4590>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7fc820511650>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7fc82225c8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7fc8204e4590>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7fc822f4c050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-03 01:00:24.865[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fc820db7b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fc823712a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7fc8211d4b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7fc822f4dc20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7fc820523050>, <coroutine object download at 0x7fc8205230e0>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7fc822f4ae60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7fc820def680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-03 08:30:01.118[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-04 01:00:00.397[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-04 01:00:05.886[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7ff394020b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7ff39697ca70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7ff39443eb00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7ff3961b7c20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7ff3937ccf80>, <coroutine object download at 0x7ff393802050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7ff3961b4e60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7ff394059680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-04 08:30:01.629[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-05 01:00:00.382[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-05 01:00:20.934[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fd2e3973b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fd2e62cea70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7fd2e3d90b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7fd2e5b09c20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7fd2e3155050>, <coroutine object download at 0x7fd2e31550e0>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7fd2e5b06e60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7fd2e39ac680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-05 08:30:01.150[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-06 01:00:00.377[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-06 01:00:29.807[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7fd9fd211b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7fd9ffb6da70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7fd9fd62fb00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7fd9ff3a8c20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7fd9fc9bdf80>, <coroutine object download at 0x7fd9fc9f2050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7fd9ff3a5e60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7fd9fd24a680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-06 08:30:01.161[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-07 01:00:00.379[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-07 01:00:03.815[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f002367cb90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f0025fd7a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7f0025818710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7f002580fe60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f0025812b90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f0025816680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f0025863d40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f0021df5a10>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f0021df5a10>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f0021df5a10>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f0021df5a10>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7f0024a6ae60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7f0022e54a50>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7f0021dee500>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7f0021dee500>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7f0021ddc910>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7f0021ddc910>
+                  │    └ <function TCPConnector._create_connection at 0x7f0024b21560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7f0021ddc5d0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7f0021ddc910>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7f0024b218c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7f0021ddc5d0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7f0025811050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-07 01:00:30.630[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f002367cb90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f0025fd7a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f0023a99b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f0025812c20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f0022e5e050>, <coroutine object download at 0x7f0022e5e0e0>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f002580fe60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f00236b4680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-07 08:30:01.239[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-08 01:00:00.387[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-08 01:00:03.649[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f3c50a74b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f3c527edc20>
+           └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f3c4fe02f80>, <coroutine object download at 0x7f3c4fe3b050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f3c527eae60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f3c5068e680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+
+
+[1mDuring handling of the above exception, another exception occurred:[0m
+
+
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f3c50657b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f3c52fb2a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7f3c527f3710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback...
+    │     └ <function gather at 0x7f3c527eae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f3c527edb90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f3c527f1680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f3c5283ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edfb390>(<Future cancelled>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edfb390>(<Future cancelled>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edfb390>(<Future cancelled>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edfb390>(<Future cancelled>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7f3c51a45e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7f3c4edf0350>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed87550>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed87550>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edbad50>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edbad50>
+                  │    └ <function TCPConnector._create_connection at 0x7f3c51afc560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7f3c4eddeb90>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edbad50>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7f3c51afc8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7f3c4eddeb90>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 1032, in _create_direct_connection
+    client_error=client_error,
+                 └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 969, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore  # noqa
+                 │    │     │                  │       └ {'ssl': None, 'family': 0, 'proto': 0, 'flags': 0, 'server_hostname': None, 'local_addr': None}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x7f3c527ee950>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x7f3c4eddeb90>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 949, in create_connection
+    await self.sock_connect(sock, address)
+          │    │            │     └ ('139.198.181.33', 5010)
+          │    │            └ <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+          │    └ <function BaseSelectorEventLoop.sock_connect at 0x7f3c527c7290>
+          └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/selector_events.py", line 473, in sock_connect
+    return await fut
+                 └ <Future cancelled>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-08 01:00:03.666[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f3c50a74b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f3c527edc20>
+           └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f3c4fe02f80>, <coroutine object download at 0x7f3c4fe3b050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f3c527eae60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f3c5068e680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+
+
+[1mDuring handling of the above exception, another exception occurred:[0m
+
+
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f3c50657b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f3c52fb2a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7f3c527f3710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback...
+    │     └ <function gather at 0x7f3c527eae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f3c527edb90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f3c527f1680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f3c5283ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edbab50>(<Future cancelled>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edbab50>(<Future cancelled>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edbab50>(<Future cancelled>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4edbab50>(<Future cancelled>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7f3c51a45e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7f3c4edb5910>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed99aa0>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed99aa0>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edf0f50>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edf0f50>
+                  │    └ <function TCPConnector._create_connection at 0x7f3c51afc560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7f3c4edb5710>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4edf0f50>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7f3c51afc8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7f3c4edb5710>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 1032, in _create_direct_connection
+    client_error=client_error,
+                 └ <class 'aiohttp.client_exceptions.ClientConnectorError'>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 969, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore  # noqa
+                 │    │     │                  │       └ {'ssl': None, 'family': 0, 'proto': 0, 'flags': 0, 'server_hostname': None, 'local_addr': None}
+                 │    │     │                  └ (functools.partial(<class 'aiohttp.client_proto.ResponseHandler'>, loop=<_UnixSelectorEventLoop running=True closed=False deb...
+                 │    │     └ <function BaseEventLoop.create_connection at 0x7f3c527ee950>
+                 │    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+                 └ <aiohttp.connector.TCPConnector object at 0x7f3c4edb5710>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 949, in create_connection
+    await self.sock_connect(sock, address)
+          │    │            │     └ ('139.198.181.33', 5010)
+          │    │            └ <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+          │    └ <function BaseSelectorEventLoop.sock_connect at 0x7f3c527c7290>
+          └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/selector_events.py", line 473, in sock_connect
+    return await fut
+                 └ <Future cancelled>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-08 01:00:03.676[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f3c50a74b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f3c527edc20>
+           └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f3c4fe02f80>, <coroutine object download at 0x7f3c4fe3b050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f3c527eae60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f3c5068e680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+
+
+[1mDuring handling of the above exception, another exception occurred:[0m
+
+
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f3c50657b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f3c52fb2a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7f3c527f3710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future pending cb=[shield.<locals>._outer_done_callback...
+    │     └ <function gather at 0x7f3c527eae60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f3c527edb90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f3c527f1680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f3c5283ed40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4ed85ed0>(<Future cancelled>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4ed85ed0>(<Future cancelled>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4ed85ed0>(<Future cancelled>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f3c4ed85ed0>(<Future cancelled>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7f3c51a45e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7f3c4edaa590>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed8bb40>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7f3c4ed8bb40>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4ed94210>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4ed94210>
+                  │    └ <function TCPConnector._create_connection at 0x7f3c51afc560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7f3c4eddea10>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7f3c4ed94210>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7f3c51afc8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7f3c4eddea10>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task cancelled coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector....
+                  │       └ <function shield at 0x7f3c527ec050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-08 01:00:06.334[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f3c50657b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f3c52fb2a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f3c50a74b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f3c527edc20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f3c4fe02f80>, <coroutine object download at 0x7f3c4fe3b050>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f3c527eae60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f3c5068e680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-08 08:30:01.686[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m
+[32m2023-02-09 01:00:00.394[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m95[0m - [1m初始化mongodb成功！[0m
+[32m2023-02-09 01:00:05.684[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mget_proxies[0m:[36m73[0m - [31m[1m[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f2f09c47b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f2f0c5a3a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 46, in run
+    _cancel_all_tasks(loop)
+    │                 └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    └ <function _cancel_all_tasks at 0x7f2f0bde4710>
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 62, in _cancel_all_tasks
+    tasks.gather(*to_cancel, loop=loop, return_exceptions=True))
+    │     │       │               └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+    │     │       └ {<Task pending coro=<download() running at wallpaper.py:50> wait_for=<Future cancelled> cb=[gather.<locals>._done_callback() ...
+    │     └ <function gather at 0x7f2f0bddbe60>
+    └ <module 'asyncio.tasks' from '/usr/local/lib/python3.7/asyncio/tasks.py'>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 574, in run_until_complete
+    self.run_forever()
+    │    └ <function BaseEventLoop.run_forever at 0x7f2f0bddeb90>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 541, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x7f2f0bde2680>
+    └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 1786, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x7f2f0be2fd40>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f2f083a8c10>(<Future finis...81.33', ...}]>)>
+  File "/usr/local/lib/python3.7/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskWakeupMethWrapper object at 0x7f2f083a8c10>(<Future finis...81.33', ...}]>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskWakeupMethWrapper object at 0x7f2f083a8c10>(<Future finis...81.33', ...}]>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskWakeupMethWrapper object at 0x7f2f083a8c10>(<Future finis...81.33', ...}]>)>
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m69[0m, in [35mget_proxies[0m
+    [35m[1masync[0m [35m[1mwith[0m [1msession[0m[35m[1m.[0m[1mget[0m[1m([0m[36m'http://139.198.181.33:5010/get/'[0m[1m,[0m [1mtimeout[0m[35m[1m=[0m[34m[1m12[0m[1m)[0m [35m[1mas[0m [1mresponse[0m[1m:[0m
+    [36m           │       └ [0m[36m[1m<function ClientSession.get at 0x7f2f0b034e60>[0m
+    [36m           └ [0m[36m[1m<aiohttp.client.ClientSession object at 0x7f2f09428850>[0m
+
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+    │    │             │    └ <member '_coro' of '_BaseRequestContextManager' objects>
+    │    │             └ <aiohttp.client._RequestContextManager object at 0x7f2f08338140>
+    │    └ <member '_resp' of '_BaseRequestContextManager' objects>
+    └ <aiohttp.client._RequestContextManager object at 0x7f2f08338140>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/client.py", line 521, in _request
+    req, traces=traces, timeout=real_timeout
+    │           │               └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+    │           └ []
+    └ <aiohttp.client_reqrep.ClientRequest object at 0x7f2f083a8610>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+                  │    │                  │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                  │    │                  │    └ []
+                  │    │                  └ <aiohttp.client_reqrep.ClientRequest object at 0x7f2f083a8610>
+                  │    └ <function TCPConnector._create_connection at 0x7f2f0b0ee560>
+                  └ <aiohttp.connector.TCPConnector object at 0x7f2f083c1d10>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+                     │    │                         │    │       └ ClientTimeout(total=12, connect=None, sock_read=None, sock_connect=None)
+                     │    │                         │    └ []
+                     │    │                         └ <aiohttp.client_reqrep.ClientRequest object at 0x7f2f083a8610>
+                     │    └ <function TCPConnector._create_direct_connection at 0x7f2f0b0ee8c0>
+                     └ <aiohttp.connector.TCPConnector object at 0x7f2f083c1d10>
+  File "/usr/local/lib/python3.7/site-packages/aiohttp/connector.py", line 999, in _create_direct_connection
+    hosts = await asyncio.shield(host_resolved)
+                  │       │      └ <Task finished coro=<TCPConnector._resolve_host() done, defined at /usr/local/lib/python3.7/site-packages/aiohttp/connector.p...
+                  │       └ <function shield at 0x7f2f0bddd050>
+                  └ <module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>
+
+[31m[1mconcurrent.futures._base.CancelledError[0m
+[32m2023-02-09 01:00:29.199[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36m<module>[0m:[36m119[0m - [31m[1mlocal variable 'e' referenced before assignment[0m
+[33m[1mTraceback (most recent call last):[0m
+
+> File "[32m[0m[32m[1mwallpaper.py[0m", line [33m107[0m, in [35m<module>[0m
+    [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m([0m[1m)[0m[1m)[0m
+    [36m│       │   └ [0m[36m[1m<function main at 0x7f2f09c47b90>[0m
+    [36m│       └ [0m[36m[1m<function run at 0x7f2f0c5a3a70>[0m
+    [36m└ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "/usr/local/lib/python3.7/asyncio/runners.py", line 43, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object main at 0x7f2f0a065b00>
+           │    └ <function BaseEventLoop.run_until_complete at 0x7f2f0bddec20>
+           └ <_UnixSelectorEventLoop running=False closed=True debug=False>
+  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished coro=<main() done, defined at wallpaper.py:76> exception=UnboundLocalError("local variable 'e' referenced befo...
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m78[0m, in [35mmain[0m
+    [1mresults[0m [35m[1m=[0m [35m[1mawait[0m [1masyncio[0m[35m[1m.[0m[1mgather[0m[1m([0m[35m[1m*[0m[1mtasks[0m[1m)[0m
+    [36m                │       │       └ [0m[36m[1m[<coroutine object download at 0x7f2f0942a050>, <coroutine object download at 0x7f2f0942a0e0>, <coroutine object download at ...[0m
+    [36m                │       └ [0m[36m[1m<function gather at 0x7f2f0bddbe60>[0m
+    [36m                └ [0m[36m[1m<module 'asyncio' from '/usr/local/lib/python3.7/asyncio/__init__.py'>[0m
+
+  File "[32m[0m[32m[1mwallpaper.py[0m", line [33m59[0m, in [35mdownload[0m
+    [1mlogger[0m[35m[1m.[0m[1mexception[0m[1m([0m[1me[0m[1m)[0m
+    [36m│      │         └ [0m[36m[1mUnboundLocalError("local variable 'e' referenced before assignment")[0m
+    [36m│      └ [0m[36m[1m<function Logger.exception at 0x7f2f09c80680>[0m
+    [36m└ [0m[36m[1m<loguru.logger handlers=[(id=0, level=10, sink=<stderr>), (id=1, level=10, sink='logs/runtime.log')]>[0m
+
+[31m[1mUnboundLocalError[0m:[1m local variable 'e' referenced before assignment[0m
+[32m2023-02-09 08:30:01.187[0m | [32m[1mSUCCESS [0m | [36m__main__[0m:[36m<module>[0m:[36m73[0m - [32m[1mWordPress每日壁纸文章发布成功![0m

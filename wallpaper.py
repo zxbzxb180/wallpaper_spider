@@ -17,7 +17,7 @@ async def fetch(session, url):
         except Exception as e:
             # print(traceback.format_exc())
             err = e
-    logger.exception(e)
+    logger.exception(err)
     return False
 
 
@@ -56,7 +56,7 @@ async def download(url):
                     # print(traceback.format_exc())
                     err = e
             if err != "":
-                logger.exception(e)
+                logger.exception(err)
 
 
 async def get_proxies():
@@ -70,7 +70,7 @@ async def get_proxies():
                 proxy_dict = await response.json()
                 return 'http://' + proxy_dict['proxy'] + '/'
         except Exception as e:
-            logger.exception(e)
+            logger.exception(err)
 
 
 async def main():
