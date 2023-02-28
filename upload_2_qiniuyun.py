@@ -46,12 +46,12 @@ class uploader():
         #else:
         #    print(resp.status_code)
         #    raise Exception('not resp error')
-        print('start upload')
+        logger.info('start upload')
         #ret, info = put_data(token, key, data)
         bucket = BucketManager(q)
         ret, info = bucket.fetch(url, self.bucket_name, key)
-        print(ret)
-        print(info)
+        logger.info(ret)
+        logger.info(info)
         if not ret:
             raise Exception('upload data error:{}'.format(url))
         logger.info("壁纸上传七牛云成功！壁纸链接：{}".format(url))
