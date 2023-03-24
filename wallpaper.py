@@ -5,6 +5,7 @@ import pymongo
 import traceback
 from auto_upload import AutoUploader
 from logger import logger
+from settings import PROXY_IP,MONGO_HOST,MONGO_PORT
 
 
 async def fetch(session, url):
@@ -51,7 +52,7 @@ async def download(url):
                         if response.status == 200:
                             response = await response.json()
                             await parser(response, session)
-                            break
+                            return
                 except Exception as e:
                     # print(traceback.format_exc())
                     err = e
@@ -66,11 +67,11 @@ async def get_proxies():
     """
     async with aiohttp.ClientSession() as session:
         try:
-            async with session.get('http://139.198.181.33:5010/get/', timeout=12) as response:
+            async with session.get(PROXY_IP + '/get/', timeout=12) as response:
                 proxy_dict = await response.json()
                 return 'http://' + proxy_dict['proxy'] + '/'
         except Exception as e:
-            logger.exception(err)
+            logger.exception(e)
 
 
 async def main():
@@ -88,7 +89,7 @@ if __name__ == '__main__':
         }
 
         # 初始化mongodb
-        client = pymongo.MongoClient('139.198.181.33', 17027)
+        client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
         db = client['wallpaper']
         #today = time.strftime("%Y-%m-%d",time.localtime(time.time()))
         collection = db['android_wallpaper']
@@ -110,7 +111,7 @@ if __name__ == '__main__':
         logger.info('使用aiohttp完成壁纸链接抓取，总共耗时：%s' % (t2 - t1))
         print('#' * 50)
 
-        # 立即开始下载图片，防止t参数实效
+        # 立即开始下载图片，防止t参数失效
         AU = AutoUploader()
         AU.main()
         logger.success("每日壁纸程序执行完毕!")
