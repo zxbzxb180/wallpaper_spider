@@ -1,6 +1,0 @@
-2023-03-24 01:00:00,003 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='1'], next run at: 2023-03-25 01:00:00 CST)" (scheduled at 2023-03-24 01:00:00+08:00)
-2023-03-24 01:00:00,005 __init__.py [line:44] [INFO]: [DEBUG] excute task wallpaper spider begin
-2023-03-24 01:02:24,619 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='1'], next run at: 2023-03-25 01:00:00 CST)" executed successfully
-2023-03-24 08:30:00,002 base.py [line:123] [INFO]: Running job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2023-03-25 08:30:00 CST)" (scheduled at 2023-03-24 08:30:00+08:00)
-2023-03-24 08:30:00,003 __init__.py [line:44] [INFO]: [DEBUG] excute task daily wallpaper begin
-2023-03-24 08:30:01,510 base.py [line:144] [INFO]: Job "timing_tasks (trigger: cron[hour='8', minute='30'], next run at: 2023-03-25 08:30:00 CST)" executed successfully
