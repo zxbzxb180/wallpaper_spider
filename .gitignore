@@ -1,2 +1,5 @@
+# 忽略文件
 settings.py
 *.log
+/__pycache__
+.qiniu_pythonsdk_hostscache.json
