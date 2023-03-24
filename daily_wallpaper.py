@@ -15,16 +15,12 @@ import requests
 import pymongo
 
 from wallpaper_db import database, WallpaperWallpaper
-
+from settings import WORDPRESS_URL,WORDPRESS_USER,WORDPRESS_PASSWORD
 from logger import logger
 
 class WPPost():
     def __init__(self):
-        # self.client = pymongo.MongoClient('47.111.74.232', 27017)
-        # self.wallpaper_db = self.client['wallpaper']
-        # self.android_wallpaper = self.wallpaper_db['android_wallpaper']
-
-        self.wp = Client('http://********/xmlrpc.php', 'admin', '******')
+        self.wp = Client(WORDPRESS_URL, WORDPRESS_USER, WORDPRESS_PASSWORD)
         self.post = WordPressPost()
         self.post.title = '{} 壁纸分享'.format(time.strftime("%Y-%m-%d",time.localtime(time.time())))
         self.post.post_status = 'publish'  #文章状态，不写默认是草稿，private表示私密的，draft表示草稿，publish表示发布
@@ -40,7 +36,6 @@ class WPPost():
 
 
     def get_wallpaper(self):
-        # wallpapers = self.android_wallpaper.find({'crawl_date':time.strftime("%Y-%m-%d",time.localtime(time.time()))}).sort("favs",-1)[:21]
         event_date_dt = datetime.datetime.strptime(time.strftime("%Y-%m-%d",time.localtime(time.time())), '%Y-%m-%d')
         wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1))).limit(21))
         i = 0
