@@ -62,7 +62,7 @@ class Logger:
             # 'logs/runtime_{}.log'.format(datetime.date.today()),
             'logs/runtime.log',
             # 日志创建周期
-            # rotation='00:00',
+            rotation='00:00',
             # 保存
             retention='90 days',
             # 文件的压缩格式
