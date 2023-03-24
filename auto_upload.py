@@ -8,20 +8,19 @@ from datetime import datetime
 from upload_2_qiniuyun import uploader
 
 from logger import logger
-from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT
 
 
 class AutoUploader():
 
     def __init__(self):
-        self.sql_client = pymysql.connect(host=MYSQL_HOST,
-                             port=MYSQL_PORT,
-                             user=MYSQL_USER,
-                             password=MYSQL_PASSWORD,
-                             db=MYSQL_DB,
+        self.sql_client = pymysql.connect(host='172.17.0.1',
+                             port=13306,
+                             user='web',
+                             password='cx6222580',
+                             db='web',
                              charset='utf8')
         logger.info("连接mysql数据库成功")
-        self.client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
+        self.client = pymongo.MongoClient('139.198.181.33', 17027)
         logger.info("连接mongodb数据库成功")
         self.db = self.client['wallpaper']
         self.android_wallpaper = self.db['android_wallpaper']
