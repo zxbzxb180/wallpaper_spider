@@ -8,7 +8,7 @@ from datetime import datetime
 from upload_2_qiniuyun import uploader
 
 from logger import logger
-from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT
+from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT, HANDLE_LIST
 
 
 class AutoUploader():
@@ -23,8 +23,7 @@ class AutoUploader():
         logger.info("连接mysql数据库成功")
         self.client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
         logger.info("连接mongodb数据库成功")
-        self.db = self.client['wallpaper']
-        self.android_wallpaper = self.db['android_wallpaper']
+        self.mongodb = self.client['wallpaper']
         self.uploader = uploader()
 
 
@@ -33,7 +32,8 @@ class AutoUploader():
 
 
     def get_android_wallpaper(self):
-        wallpapers = self.android_wallpaper.find({"is_handle": {"$exists": False}})
+        android_collection = self.mongodb[HANDLE_LIST["android"]["mongodb"]]
+        wallpapers = android_collection.find({"is_handle": {"$exists": False}})
         for wallpaper in wallpapers:
             print(wallpaper)
             #img_id = wallpaper['id']
@@ -46,7 +46,7 @@ class AutoUploader():
             result1 = self.to_upload(img_id, img_url)
             result2 = self.to_th_upload(img_id, img_url)
             if result1 and result2:
-                self.android_wallpaper.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
+                android_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
 
 
     def to_upload(self, img_id, img_url):
@@ -83,6 +83,7 @@ class AutoUploader():
 
 
     def main(self):
+        # 上传安卓壁纸
         self.get_android_wallpaper()
         print('finish!')
         logger.info("今日壁纸上传七牛云并保存外链至mysql完毕！")

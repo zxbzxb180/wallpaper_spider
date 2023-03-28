@@ -5,7 +5,7 @@ import pymongo
 import traceback
 from auto_upload import AutoUploader
 from logger import logger
-from settings import PROXY_IP, MONGO_HOST, MONGO_PORT, HANDLE_LIST
+from settings import PROXY_IP,MONGO_HOST,MONGO_PORT
 
 
 async def fetch(session, url):
@@ -22,11 +22,18 @@ async def fetch(session, url):
     return False
 
 
-# 解析安卓壁纸
-async def android_parser(data_json, session, obj):
-    collection = db[HANDLE_LIST['android']['mongodb']]
+# 解析网页
+async def parser(data_json, session):
     datas = data_json.get('res', {}).get('vertical', [])
     for data in datas:
+        #id = data.get('id', '')
+        #img = data.get('img', '')
+        #async with session.get(img, proxy=await get_proxies(), headers=headers, timeout=6) as response:
+        #    if response.status == 200:
+        #        with open('./images/{}.jpg'.format(id), 'wb') as f:
+        #            f.write(await response.content.read())
+        #    else:
+        #        raise
         data['crawl_date'] = time.strftime("%Y-%m-%d",time.localtime(time.time()))
         data['crawl_time'] = time.time()
         collection.update_one({'id':data['id']}, {'$setOnInsert':data}, upsert=True)
@@ -34,10 +41,7 @@ async def android_parser(data_json, session, obj):
 
 
 # 处理网页
-async def download(obj):
-    url = obj['url']
-    headers=obj['headers']
-    parser = parser_dict[obj['source']]
+async def download(url):
     print(url)
     async with asyncio.Semaphore(50):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
@@ -47,7 +51,7 @@ async def download(obj):
                     async with session.get(url, proxy=await get_proxies(), headers=headers, timeout=12) as response:
                         if response.status == 200:
                             response = await response.json()
-                            await parser(response, session, obj)
+                            await parser(response, session)
                             return
                 except Exception as e:
                     # print(traceback.format_exc())
@@ -71,44 +75,25 @@ async def get_proxies():
 
 
 async def main():
-    tasks = [download(obj) for obj in objs]
+    tasks = [download(url) for url in urls]
     results = await asyncio.gather(*tasks)
-
-
-def gen_android_objs():
-    if 'android' not in HANDLE_LIST.keys():
-        return []
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
-    }
-    return [{
-                'url': 'http://service.picasso.adesk.com/v1/vertical/category/4e4d610cdf714d2966000003/vertical?&adult=false&order=new&skip={}'.format(i),
-                'source': 'android',
-                'headers': headers,
-                'is_handle': False
-            } for i in range(0, 450, 30)]
 
 
 if __name__ == '__main__':
     try:
-        parser_dict = {
-         'android': android_parser
+        # 全部网页
+        urls = ['http://service.picasso.adesk.com/v1/vertical/category/4e4d610cdf714d2966000003/vertical?&adult=false&order=new&skip={}'.format(i) for i in range(0, 450, 30)]
+
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
         }
-
-        objs = []
-        # 安卓壁纸
-        objs.extend(gen_android_objs())
-
-
-        if len(objs) == 0:
-            logger.success("今日无壁纸任务!")
-            exit()
 
         # 初始化mongodb
         client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
         db = client['wallpaper']
+        #today = time.strftime("%Y-%m-%d",time.localtime(time.time()))
+        collection = db['android_wallpaper']
         logger.info("初始化mongodb成功！")
-
         # 统计该爬虫的消耗时间
         print('#' * 50)
         t1 = time.time()  # 开始时间
