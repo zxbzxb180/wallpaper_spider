@@ -10,6 +10,7 @@ from upload_2_qiniuyun import uploader
 from logger import logger
 from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT, HANDLE_LIST
 
+from utils.uid import get_uid
 
 class AutoUploader():
 
@@ -35,37 +36,49 @@ class AutoUploader():
         android_collection = self.mongodb[HANDLE_LIST["android"]["mongodb"]]
         wallpapers = android_collection.find({"is_handle": {"$exists": False}})
         for wallpaper in wallpapers:
-            print(wallpaper)
-            #img_id = wallpaper['id']
             img_url = wallpaper['wp']
+            th_url = img_url+'&imageMogr2/thumbnail/!240x240r/gravity/Center/crop/240x240'
+            img_id = get_uid(img_url)
 
-            m = hashlib.md5()
-            m.update(img_url.encode(encoding='utf-8'))
-            img_id = m.hexdigest()
+            result1 = self.to_upload(img_id, img_url, HANDLE_LIST["android"]["mongodb"])
+            result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["android"]["mongodb"])
 
-            result1 = self.to_upload(img_id, img_url)
-            result2 = self.to_th_upload(img_id, img_url)
             if result1 and result2:
                 android_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
 
 
-    def to_upload(self, img_id, img_url):
-        result = self.uploader.upload('adwp_{}'.format(img_id), img_url)
+    def get_wallhaven_wallpaper(self):
+        wallhaven_collection = self.mongodb[HANDLE_LIST["wallhaven"]["mongodb"]]
+        wallpapers = wallhaven_collection.find({"is_handle":  False })
+        for wallpaper in wallpapers:
+            img_url = wallpaper['wp']
+            th_url = wallpaper['thumb']
+            img_id = get_uid(img_url)
+
+            result1 = self.to_upload(img_id, img_url, HANDLE_LIST["wallhaven"]["mongodb"])
+            result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["wallhaven"]["mongodb"])
+
+            if result1 and result2:
+                wallhaven_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
+
+
+
+    def to_upload(self, img_id, img_url, source):
+        result = self.uploader.upload(img_id, img_url)
         if result:
             sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `source`, `add_time`) VALUES (%s, %s, %s, %s);"
-            data = (img_id, 'https://yueeronline.xyz/adwp_{}.jpg'.format(img_id), 'android_wallpaper', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            data = (img_id, 'https://yueeronline.xyz/{}.jpg'.format(img_id), source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             self.save_to_mysql(sql, data)
             logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
             return True
 
-    def to_th_upload(self, img_id, img_url):
-        th_url = img_url+'&imageMogr2/thumbnail/!240x240r/gravity/Center/crop/240x240'
-        qiniu_url = 'https://yueeronline.xyz/adwp_th_{}.jpg'.format(img_id)
-        result = self.uploader.upload('adwp_th_{}'.format(img_id), th_url)
+    def to_th_upload(self, img_id, th_url, source):
+        qiniu_url = 'https://yueeronline.xyz/th_{}.jpg'.format(img_id)
+        result = self.uploader.upload('th_{}'.format(img_id), th_url)
         if result:
-            sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}'".format(qiniu_url, img_id)
+            sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}' and source = '{}'".format(qiniu_url, img_id, source)
             self.save_to_mysql(sql)
-            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
+            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, th_url))
             return True
 
     def save_to_mysql(self, sql, data=None):
@@ -84,7 +97,9 @@ class AutoUploader():
 
     def main(self):
         # 上传安卓壁纸
-        self.get_android_wallpaper()
+        self.get_android_wallpaper() if HANDLE_LIST.get("android") else None
+        # 上传wallhaven壁纸
+        self.get_wallhaven_wallpaper() if HANDLE_LIST.get("wallhaven") else None
         print('finish!')
         logger.info("今日壁纸上传七牛云并保存外链至mysql完毕！")
 

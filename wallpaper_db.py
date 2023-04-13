@@ -17,6 +17,7 @@ class WallpaperWallpaper(BaseModel):
     source = CharField()
     thumbnail = CharField(null=True)
     url = CharField()
+    is_delete = SmallIntegerField()
 
     class Meta:
         table_name = 'wallpaper_wallpaper'

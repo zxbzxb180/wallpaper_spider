@@ -6,24 +6,13 @@ import traceback
 from auto_upload import AutoUploader
 from logger import logger
 from settings import PROXY_IP, MONGO_HOST, MONGO_PORT, HANDLE_LIST
+from lxml import etree
 
-
-async def fetch(session, url):
-    err = ""
-    for i in range(10):
-        try:
-            async with session.get(url, proxy=await get_proxies(), headers=headers, timeout=6) as response:
-            # async with session.get(url, headers=headers) as response:
-                return await response.content()
-        except Exception as e:
-            # print(traceback.format_exc())
-            err = e
-    logger.exception(err)
-    return False
 
 
 # 解析安卓壁纸
-async def android_parser(data_json, session, obj):
+async def android_parser(response, session, obj):
+    data_json = await response.json()
     collection = db[HANDLE_LIST['android']['mongodb']]
     datas = data_json.get('res', {}).get('vertical', [])
     for data in datas:
@@ -33,7 +22,23 @@ async def android_parser(data_json, session, obj):
         print(data)
 
 
-# 处理网页
+# 解析wallhaven壁纸
+async def wallhaven_parser(response, session, obj):
+    collection = db[HANDLE_LIST['wallhaven']['mongodb']]
+    html = await response.text()
+    tree = etree.HTML(html)
+    wp_ids = tree.xpath("//li/figure/@data-wallpaper-id")
+    for wp_id in wp_ids:
+        obj['id'] = wp_id
+        obj['crawl_date'] = time.strftime("%Y-%m-%d",time.localtime(time.time()))
+        obj['crawl_time'] = time.time()
+        obj['wp'] = 'https://w.wallhaven.cc/full/{}/wallhaven-{}.jpg'.format(wp_id[0:2], wp_id)
+        obj['thumb'] = 'https://th.wallhaven.cc/small/{}/{}.jpg'.format(wp_id[0:2], wp_id)
+        collection.update_one({'id':obj['id']}, {'$setOnInsert':obj}, upsert=True)
+        print(obj)
+
+
+# 下载网页
 async def download(obj):
     url = obj['url']
     headers=obj['headers']
@@ -44,16 +49,47 @@ async def download(obj):
             err = ""
             for i in range(20):
                 try:
-                    async with session.get(url, proxy=await get_proxies(), headers=headers, timeout=12) as response:
+                    if obj.get("no_proxies"):
+                        proxies = None
+                    else:
+                        proxies = await get_proxies()
+                    async with session.get(url, proxy=proxies, headers=headers, timeout=12) as response:
                         if response.status == 200:
-                            response = await response.json()
                             await parser(response, session, obj)
                             return
                 except Exception as e:
-                    # print(traceback.format_exc())
+                    print(traceback.format_exc())
                     err = e
             if err != "":
                 logger.exception(err)
+
+def gen_android_objs():
+    if 'android' not in HANDLE_LIST.keys():
+        return []
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+    }
+    return [{
+                'url': 'http://service.picasso.adesk.com/v1/vertical/category/4e4d610cdf714d2966000003/vertical?&adult=false&order=new&skip={}'.format(i),
+                'source': 'android',
+                'headers': headers,
+                'is_handle': False
+            } for i in range(0, 450, 30)]
+
+def gen_wallhaven_objs():
+    if 'wallhaven' not in HANDLE_LIST.keys():
+        return []
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
+    }
+    return [{
+                'url': 'https://wallhaven.cc/search?categories=110&purity=100&sorting=date_added&order=desc&ai_art_filter=0&page={}'.format(i),
+                'source': 'wallhaven',
+                'headers': headers,
+                'is_handle': False,
+                'no_proxies': True
+            } for i in range(1, 11)]
+
 
 
 async def get_proxies():
@@ -75,29 +111,19 @@ async def main():
     results = await asyncio.gather(*tasks)
 
 
-def gen_android_objs():
-    if 'android' not in HANDLE_LIST.keys():
-        return []
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
-    }
-    return [{
-                'url': 'http://service.picasso.adesk.com/v1/vertical/category/4e4d610cdf714d2966000003/vertical?&adult=false&order=new&skip={}'.format(i),
-                'source': 'android',
-                'headers': headers,
-                'is_handle': False
-            } for i in range(0, 450, 30)]
-
 
 if __name__ == '__main__':
     try:
         parser_dict = {
-         'android': android_parser
+         'android': android_parser,
+         'wallhaven': wallhaven_parser
         }
 
         objs = []
         # 安卓壁纸
         objs.extend(gen_android_objs())
+        # wallhaven壁纸
+        objs.extend(gen_wallhaven_objs())
 
 
         if len(objs) == 0:

@@ -11,11 +11,11 @@ from wordpress_xmlrpc.compat import xmlrpc_client
 from wordpress_xmlrpc.methods import media, posts
 
 import requests
-
 import pymongo
+from peewee import fn
 
 from wallpaper_db import database, WallpaperWallpaper
-from settings import WORDPRESS_URL,WORDPRESS_USER,WORDPRESS_PASSWORD
+from settings import WORDPRESS_URL,WORDPRESS_USER,WORDPRESS_PASSWORD,WORDPRESS_POST_NUM
 from logger import logger
 
 class WPPost():
@@ -37,7 +37,7 @@ class WPPost():
 
     def get_wallpaper(self):
         event_date_dt = datetime.datetime.strptime(time.strftime("%Y-%m-%d",time.localtime(time.time())), '%Y-%m-%d')
-        wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1))).limit(21))
+        wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1)) & (self.wallpaper.is_delete == 0)).limit(WORDPRESS_POST_NUM))
         i = 0
         if not wallpapers:
             self.content += '很抱歉^_^，今日没有壁纸哦~'
@@ -46,7 +46,7 @@ class WPPost():
             i += 1
             wp = wallpaper.url
             wp_th = wallpaper.thumbnail
-            self.content += '!{{image {}}}({})[{}] '.format(i, wp, wp_th)
+            self.content += '!{{image {}}}({})[{}?resize=240,240] '.format(i, wp, wp_th)
     def __del__(self):
         self.sql_client.close()
 
