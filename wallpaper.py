@@ -28,11 +28,18 @@ async def wallhaven_parser(response, session, obj):
     html = await response.text()
     tree = etree.HTML(html)
     wp_ids = tree.xpath("//li/figure/@data-wallpaper-id")
-    for wp_id in wp_ids:
+    figures = tree.xpath("//li/figure")
+    for figure in figures:
+        wp_id = figure.xpath("./@data-wallpaper-id")[0]
+        wp_png = figure.xpath("./div/span[@class='png']")
+        if wp_png:
+            wp_format = 'png'
+        else:
+            wp_format = 'jpg'
         obj['id'] = wp_id
         obj['crawl_date'] = time.strftime("%Y-%m-%d",time.localtime(time.time()))
         obj['crawl_time'] = time.time()
-        obj['wp'] = 'https://w.wallhaven.cc/full/{}/wallhaven-{}.jpg'.format(wp_id[0:2], wp_id)
+        obj['wp'] = 'https://w.wallhaven.cc/full/{}/wallhaven-{}.{}'.format(wp_id[0:2], wp_id, wp_format)
         obj['thumb'] = 'https://th.wallhaven.cc/small/{}/{}.jpg'.format(wp_id[0:2], wp_id)
         collection.update_one({'id':obj['id']}, {'$setOnInsert':obj}, upsert=True)
         print(obj)
@@ -53,7 +60,7 @@ async def download(obj):
                         proxies = None
                     else:
                         proxies = await get_proxies()
-                    async with session.get(url, proxy=proxies, headers=headers, timeout=12) as response:
+                    async with session.get(url, proxy=proxies, headers=headers, timeout=16) as response:
                         if response.status == 200:
                             await parser(response, session, obj)
                             return

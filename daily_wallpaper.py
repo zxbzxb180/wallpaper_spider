@@ -37,7 +37,7 @@ class WPPost():
 
     def get_wallpaper(self):
         event_date_dt = datetime.datetime.strptime(time.strftime("%Y-%m-%d",time.localtime(time.time())), '%Y-%m-%d')
-        wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1)) & (self.wallpaper.is_delete == 0)).limit(WORDPRESS_POST_NUM))
+        wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1)) & (self.wallpaper.is_delete == 0)).order_by(-self.wallpaper.id).limit(WORDPRESS_POST_NUM))
         i = 0
         if not wallpapers:
             self.content += '很抱歉^_^，今日没有壁纸哦~'
@@ -46,7 +46,7 @@ class WPPost():
             i += 1
             wp = wallpaper.url
             wp_th = wallpaper.thumbnail
-            self.content += '!{{image {}}}({})[{}?resize=240,240] '.format(i, wp, wp_th)
+            self.content += '!{{image {}}}({})[{}] '.format(i, wp, wp_th)
     def __del__(self):
         self.sql_client.close()
 

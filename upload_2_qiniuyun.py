@@ -42,8 +42,8 @@ class uploader():
         logger.info(ret)
         logger.info(info)
         if not ret:
-            raise Exception('upload data error:{}'.format(url))
-        logger.info("壁纸上传七牛云成功！壁纸链接：{}".format(url))
+            raise Exception('upload data error:{}, {}'.format(name, url))
+        logger.info("壁纸上传七牛云成功！原网链接：{}".format(url))
         return ret
 
 if __name__ == '__main__':

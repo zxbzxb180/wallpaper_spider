@@ -37,13 +37,14 @@ class AutoUploader():
         wallpapers = android_collection.find({"is_handle": {"$exists": False}})
         for wallpaper in wallpapers:
             img_url = wallpaper['wp']
-            th_url = img_url+'&imageMogr2/thumbnail/!240x240r/gravity/Center/crop/240x240'
+            # th_url = img_url+'&imageMogr2/thumbnail/!240x240r/gravity/Center/crop/240x240'
             img_id = get_uid(img_url)
 
             result1 = self.to_upload(img_id, img_url, HANDLE_LIST["android"]["mongodb"])
-            result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["android"]["mongodb"])
+            # result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["android"]["mongodb"])
 
-            if result1 and result2:
+            # if result1 and result2:
+            if result1:
                 android_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
 
 
@@ -52,13 +53,14 @@ class AutoUploader():
         wallpapers = wallhaven_collection.find({"is_handle":  False })
         for wallpaper in wallpapers:
             img_url = wallpaper['wp']
-            th_url = wallpaper['thumb']
+            # th_url = wallpaper['thumb']
             img_id = get_uid(img_url)
 
             result1 = self.to_upload(img_id, img_url, HANDLE_LIST["wallhaven"]["mongodb"])
-            result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["wallhaven"]["mongodb"])
+            # result2 = self.to_th_upload(img_id, th_url, HANDLE_LIST["wallhaven"]["mongodb"])
 
-            if result1 and result2:
+            # if result1 and result2:
+            if result1:
                 wallhaven_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
 
 
@@ -66,20 +68,25 @@ class AutoUploader():
     def to_upload(self, img_id, img_url, source):
         result = self.uploader.upload(img_id, img_url)
         if result:
-            sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `source`, `add_time`) VALUES (%s, %s, %s, %s);"
-            data = (img_id, 'https://yueeronline.xyz/{}.jpg'.format(img_id), source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `thumbnail`, `source`, `add_time`) VALUES (%s, %s, %s, %s, %s);"
+            url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
+            thumbnail = url + '?imageView2/1/w/240/h/240/q/75'
+            data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             self.save_to_mysql(sql, data)
             logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
             return True
 
-    def to_th_upload(self, img_id, th_url, source):
-        qiniu_url = 'https://yueeronline.xyz/th_{}.jpg'.format(img_id)
-        result = self.uploader.upload('th_{}'.format(img_id), th_url)
-        if result:
-            sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}' and source = '{}'".format(qiniu_url, img_id, source)
-            self.save_to_mysql(sql)
-            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, th_url))
-            return True
+
+    # 七牛云支持访问图片时改变分辨率，因此不需要额外存储缩略图了
+    # def to_th_upload(self, img_id, th_url, source):
+    #     qiniu_url = 'https://yueeronline.xyz/th_{}.jpg'.format(img_id)
+    #     result = self.uploader.upload('th_{}'.format(img_id), th_url)
+    #     if result:
+    #         sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}' and source = '{}'".format(qiniu_url, img_id, source)
+    #         self.save_to_mysql(sql)
+    #         logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, th_url))
+    #         return True
+
 
     def save_to_mysql(self, sql, data=None):
         cursor = self.sql_client.cursor()
