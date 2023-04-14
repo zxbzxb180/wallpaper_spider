@@ -73,7 +73,7 @@ class AutoUploader():
             thumbnail = url + '?imageView2/1/w/240/h/240/q/75'
             data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             self.save_to_mysql(sql, data)
-            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, img_url))
+            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, url))
             return True
 
 
