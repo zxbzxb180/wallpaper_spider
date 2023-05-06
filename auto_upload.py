@@ -8,7 +8,7 @@ from datetime import datetime
 from upload_2_qiniuyun import uploader
 
 from logger import logger
-from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT, HANDLE_LIST
+from settings import MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DB, MONGO_HOST, MONGO_PORT, HANDLE_LIST, MONGO_USERNAME, MONGO_PASSWORD, MONGO_AUTH_SOURCE, MONGO_AUTH_MECHANISM
 
 from utils.uid import get_uid
 
@@ -22,7 +22,7 @@ class AutoUploader():
                              db=MYSQL_DB,
                              charset='utf8')
         logger.info("连接mysql数据库成功")
-        self.client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
+        self.client = pymongo.MongoClient(host=MONGO_HOST, port=MONGO_PORT, username=MONGO_USERNAME, password=MONGO_PASSWORD, authSource=MONGO_AUTH_SOURCE, authMechanism=MONGO_AUTH_MECHANISM)
         logger.info("连接mongodb数据库成功")
         self.mongodb = self.client['wallpaper']
         self.uploader = uploader()
@@ -45,7 +45,7 @@ class AutoUploader():
 
             # if result1 and result2:
             if result1:
-                android_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
+                android_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True, 'img_id': img_id}})
 
 
     def get_wallhaven_wallpaper(self):
@@ -61,7 +61,7 @@ class AutoUploader():
 
             # if result1 and result2:
             if result1:
-                wallhaven_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True}})
+                wallhaven_collection.update_one({'_id':wallpaper['_id']}, {'$set':{'is_handle':True, 'img_id': img_id}})
 
 
 
