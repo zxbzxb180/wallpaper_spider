@@ -5,7 +5,7 @@ import pymongo
 import traceback
 from auto_upload import AutoUploader
 from logger import logger
-from settings import PROXY_IP, MONGO_HOST, MONGO_PORT, HANDLE_LIST
+from settings import PROXY_IP, MONGO_HOST, MONGO_PORT, HANDLE_LIST, MONGO_USERNAME, MONGO_PASSWORD, MONGO_AUTH_SOURCE, MONGO_AUTH_MECHANISM
 from lxml import etree
 
 
@@ -19,7 +19,7 @@ async def android_parser(response, session, obj):
         data['crawl_date'] = time.strftime("%Y-%m-%d",time.localtime(time.time()))
         data['crawl_time'] = time.time()
         collection.update_one({'id':data['id']}, {'$setOnInsert':data}, upsert=True)
-        print(data)
+        logger.info(data)
 
 
 # 解析wallhaven壁纸
@@ -42,7 +42,7 @@ async def wallhaven_parser(response, session, obj):
         obj['wp'] = 'https://w.wallhaven.cc/full/{}/wallhaven-{}.{}'.format(wp_id[0:2], wp_id, wp_format)
         obj['thumb'] = 'https://th.wallhaven.cc/small/{}/{}.jpg'.format(wp_id[0:2], wp_id)
         collection.update_one({'id':obj['id']}, {'$setOnInsert':obj}, upsert=True)
-        print(obj)
+        logger.info(obj)
 
 
 # 下载网页
@@ -138,12 +138,12 @@ if __name__ == '__main__':
             exit()
 
         # 初始化mongodb
-        client = pymongo.MongoClient(MONGO_HOST, MONGO_PORT)
+        client = pymongo.MongoClient(host=MONGO_HOST, port=MONGO_PORT, username=MONGO_USERNAME, password=MONGO_PASSWORD, authSource=MONGO_AUTH_SOURCE, authMechanism=MONGO_AUTH_MECHANISM)
         db = client['wallpaper']
         logger.info("初始化mongodb成功！")
 
         # 统计该爬虫的消耗时间
-        print('#' * 50)
+        logger.info('#' * 50)
         t1 = time.time()  # 开始时间
 
         # # 利用asyncio模块进行异步IO处理
@@ -157,7 +157,7 @@ if __name__ == '__main__':
 
         t2 = time.time()  # 结束时间
         logger.info('使用aiohttp完成壁纸链接抓取，总共耗时：%s' % (t2 - t1))
-        print('#' * 50)
+        logger.info('#' * 50)
 
         # 立即开始下载图片，防止t参数失效
         AU = AutoUploader()
