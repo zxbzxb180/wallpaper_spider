@@ -37,11 +37,14 @@ class WPPost():
 
     def get_wallpaper(self):
         event_date_dt = datetime.datetime.strptime(time.strftime("%Y-%m-%d",time.localtime(time.time())), '%Y-%m-%d')
+        event_date_dt = datetime.datetime.strptime("2023-09-13", '%Y-%m-%d')
         wallpapers = list(self.wallpaper.select().where((self.wallpaper.add_time > event_date_dt) & (self.wallpaper.add_time < event_date_dt + datetime.timedelta(days=1)) & (self.wallpaper.is_delete == 0)).order_by(-self.wallpaper.id).limit(WORDPRESS_POST_NUM))
         i = 0
         if not wallpapers:
-            self.content += '很抱歉^_^，今日没有壁纸哦~'
-            return
+            # self.content += '很抱歉^_^，今日没有壁纸哦~'
+            # return
+            wallpapers = list(self.wallpaper.select().order_by(fn.Rand()).limit(WORDPRESS_POST_NUM))
+
         for wallpaper in wallpapers:
             i += 1
             wp = wallpaper.url

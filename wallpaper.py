@@ -60,7 +60,7 @@ async def download(obj):
                         proxies = None
                     else:
                         proxies = await get_proxies()
-                    async with session.get(url, proxy=proxies, headers=headers, timeout=16) as response:
+                    async with session.get(url, proxy=proxies, headers=headers, timeout=300) as response:
                         if response.status == 200:
                             await parser(response, session, obj)
                             return
@@ -94,7 +94,7 @@ def gen_wallhaven_objs():
                 'source': 'wallhaven',
                 'headers': headers,
                 'is_handle': False,
-                'no_proxies': True
+                # 'no_proxies': True
             } for i in range(1, 11)]
 
 
