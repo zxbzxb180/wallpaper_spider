@@ -70,7 +70,7 @@ class AutoUploader():
         if result:
             sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `thumbnail`, `source`, `add_time`) VALUES (%s, %s, %s, %s, %s);"
             url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
-            thumbnail = url + '?imageView2/1/w/240/h/240/q/75'
+            thumbnail = url + '?imageView2/1/w/240/h/240/format/jpg/q/75|imageslim'
             data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             self.save_to_mysql(sql, data)
             logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, url))

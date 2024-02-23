@@ -64,7 +64,7 @@ class Logger:
             # 日志创建周期
             rotation='00:00',
             # 保存
-            retention='90 days',
+            retention='30 days',
             # 文件的压缩格式
             # compression='zip',
             # 编码格式
