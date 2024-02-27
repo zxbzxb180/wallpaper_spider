@@ -51,16 +51,16 @@ async def download(obj):
     headers=obj['headers']
     parser = parser_dict[obj['source']]
     print(url)
-    async with asyncio.Semaphore(50):
+    async with asyncio.Semaphore(1000):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
             err = ""
-            for i in range(20):
+            for i in range(5):
                 try:
                     if obj.get("no_proxies"):
                         proxies = None
                     else:
                         proxies = await get_proxies()
-                    async with session.get(url, proxy=proxies, headers=headers, timeout=300) as response:
+                    async with session.get(url, proxy=proxies, headers=headers, timeout=10) as response:
                         if response.status == 200:
                             await parser(response, session, obj)
                             return
@@ -116,6 +116,7 @@ async def get_proxies():
 async def main():
     tasks = [download(obj) for obj in objs]
     results = await asyncio.gather(*tasks)
+    # results = await asyncio.wait(tasks)
 
 
 

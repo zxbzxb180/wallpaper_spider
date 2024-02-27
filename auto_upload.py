@@ -72,33 +72,33 @@ class AutoUploader():
             url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
             thumbnail = url + '?imageView2/1/w/240/h/240/format/jpg/q/75|imageslim'
             data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-            self.save_to_mysql(sql, data)
-            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, url))
+            self.save_to_mysql(sql, data, img_id)
             return True
 
 
-    # 七牛云支持访问图片时改变分辨率，因此不需要额外存储缩略图了
-    # def to_th_upload(self, img_id, th_url, source):
-    #     qiniu_url = 'https://yueeronline.xyz/th_{}.jpg'.format(img_id)
-    #     result = self.uploader.upload('th_{}'.format(img_id), th_url)
-    #     if result:
-    #         sql = "UPDATE `wallpaper_wallpaper` SET `thumbnail` = '{}' WHERE img_id = '{}' and source = '{}'".format(qiniu_url, img_id, source)
-    #         self.save_to_mysql(sql)
-    #         logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, th_url))
-    #         return True
-
-
-    def save_to_mysql(self, sql, data=None):
+        sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `thumbnail`, `source`, `add_time`) VALUES (%s, %s, %s, %s, %s);"
+        url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
+        thumbnail = url + '?imageView2/1/w/240/h/240/format/jpg/q/75|imageslim'
+        data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         cursor = self.sql_client.cursor()
         try:
             # 执行sql语句
             cursor.execute(sql, data)
             # 执行sql语句
             self.sql_client.commit()
+            logger.info("壁纸已写入mysql数据库，id：{}, 链接：{}".format(img_id, url))
+            logger.info("开始上传图片到七牛云...")
+            result = self.uploader.upload(img_id, img_url)
+            logger.info("上传结果: {}".format(result))
+            if not result:
+                raise Exception("上传图片到七牛云失败...")
+
         except Exception as e:
             # 发生错误时回滚
-            print(traceback.format_exc())
+            logger.exception(e)
+            logger.info("开始回滚...")
             self.sql_client.rollback()
+            logger.info("回滚成功.")
         cursor.close()
 
 

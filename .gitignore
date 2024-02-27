@@ -4,4 +4,4 @@ settings.py
 *.log*
 __pycache__/
 .qiniu_pythonsdk_hostscache.json
-ClawCron/dispatcher.log
+ClawCron/**/*.log
