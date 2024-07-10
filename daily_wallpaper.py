@@ -55,7 +55,7 @@ class WPPost():
     def post_wallpaper(self):
         self.post.content = self.content
         self.post.id = self.wp.call(posts.NewPost(self.post))
-        print('post success! {}'.format(id))
+        logger.info('post success! {}'.format(id))
 
 
     def main(self):

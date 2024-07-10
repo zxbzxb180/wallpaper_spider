@@ -50,7 +50,7 @@ async def download(obj):
     url = obj['url']
     headers=obj['headers']
     parser = parser_dict[obj['source']]
-    print(url)
+    logger.info(url)
     async with asyncio.Semaphore(1000):
         async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
             err = ""
@@ -65,7 +65,6 @@ async def download(obj):
                             await parser(response, session, obj)
                             return
                 except Exception as e:
-                    print(traceback.format_exc())
                     err = e
             if err != "":
                 logger.exception(err)

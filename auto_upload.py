@@ -66,16 +66,6 @@ class AutoUploader():
 
 
     def to_upload(self, img_id, img_url, source):
-        result = self.uploader.upload(img_id, img_url)
-        if result:
-            sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `thumbnail`, `source`, `add_time`) VALUES (%s, %s, %s, %s, %s);"
-            url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
-            thumbnail = url + '?imageView2/1/w/240/h/240/format/jpg/q/75|imageslim'
-            data = (img_id, url, thumbnail, source, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-            self.save_to_mysql(sql, data, img_id)
-            return True
-
-
         sql = "INSERT IGNORE INTO `wallpaper_wallpaper` (`img_id`, `url`, `thumbnail`, `source`, `add_time`) VALUES (%s, %s, %s, %s, %s);"
         url = 'https://yueeronline.xyz/{}.jpg'.format(img_id)
         thumbnail = url + '?imageView2/1/w/240/h/240/format/jpg/q/75|imageslim'
@@ -92,6 +82,7 @@ class AutoUploader():
             logger.info("上传结果: {}".format(result))
             if not result:
                 raise Exception("上传图片到七牛云失败...")
+            return True
 
         except Exception as e:
             # 发生错误时回滚
@@ -107,7 +98,7 @@ class AutoUploader():
         self.get_android_wallpaper() if HANDLE_LIST.get("android") else None
         # 上传wallhaven壁纸
         self.get_wallhaven_wallpaper() if HANDLE_LIST.get("wallhaven") else None
-        print('finish!')
+        logger.info('finish!')
         logger.info("今日壁纸上传七牛云并保存外链至mysql完毕！")
 
 
