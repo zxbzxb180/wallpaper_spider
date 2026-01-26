@@ -65,6 +65,7 @@ async def download(obj):
                             await parser(response, session, obj)
                             return
                 except Exception as e:
+                    print(traceback.format_exc())
                     err = e
             if err != "":
                 logger.exception(err)
@@ -80,7 +81,7 @@ def gen_android_objs():
                 'source': 'android',
                 'headers': headers,
                 'is_handle': False
-            } for i in range(0, 450, 30)]
+            } for i in range(0, 750, 30)]
 
 def gen_wallhaven_objs():
     if 'wallhaven' not in HANDLE_LIST.keys():

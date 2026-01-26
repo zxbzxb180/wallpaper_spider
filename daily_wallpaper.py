@@ -28,7 +28,7 @@ class WPPost():
                               'post_tag': ['壁纸'], #文章所属标签，没有则自动创建
                               'category': ['壁纸分享'] #文章所属分类，没有则自动创建
                              }
-        self.content = '本站收集的所有壁纸,仅为壁纸爱好者分享,禁止商用或进行其他不当行为！如侵犯到权益,请联系我立刻删除。\r\n \r\n'
+        self.content = '本站收集的所有壁纸,仅为壁纸爱好者分享,禁止商用或进行其他不当行为！如侵犯到权益,请联系我立刻删除。本站为0收入网站,请勿使用爬虫爬取造成高额流量费用。 \r\n \r\n'
         self.post.comment_status = 'open'
         self.sql_client = database
         self.sql_client.connect()
